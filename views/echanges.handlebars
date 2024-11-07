@@ -1,0 +1,28 @@
+{{!-- 
+
+<p>{{this.nom_brique}}</p>
+<p>{{this.id_brique}}</p>
+ --}}
+
+
+<h2>Echanges</h2>
+<div>
+<table>
+    <tr>
+        <th>Nom</th>
+        <th>Utilisateur nom</th>
+        <th>utilisateur prenom</th>
+        <th></th>
+    </tr>
+    {{#each allEchanges}}
+        <tr>
+            <td>{{this.nom_echange}}</td>
+            <td>{{this.nom}} </td>
+            <td>{{this.prenom}} </td>
+            <td><input type="button" value="voir echange"></td>
+        </tr>
+
+    {{/each}}
+</table>
+</div>
+<div><a href="http://localhost:5000/briques">ggygyguhuhuhuuj</a></div>
