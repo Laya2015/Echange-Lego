@@ -32,7 +32,7 @@ export async function getBrique() {
     const briques = await connexion.all(
         // `SELECT *
         // FROM brique`
-        `SELECT brique.image , couleur.nom as brique_Couleur , brique.valeur , brique.nom 
+        `SELECT brique.image , couleur.nom as brique_Couleur , brique.valeur , brique.nom , brique.id_brique
         FROM brique
         JOIN couleur ON brique.id_couleur = couleur.id_couleur;`
     )
@@ -40,25 +40,25 @@ export async function getBrique() {
 }
 
 //Valider
-export async function postEchange(nom_echange, briques){
+export async function postEchange(nom_echange){
     const resultat = await connexion.run(
         `INSERT INTO echange (nom_echange, id_utilisateur)
         VALUES (?, ?);`,
         [nom_echange, 1]
         // INSERT INTO echange_brique(id_brique, quantite)
     );
-    const idStock = resultat.lastID;
+    
 
-    for(const brique of briques) {
+    // for(const brique of briques) {
         const resultat2 = await connexion.run(
             `INSERT INTO echange_brique (id_echange, id_brique, quantite)
             VALUES (?, ?, ?)`,
-            [idStock, brique.id_brique, brique.quantite]
+            [resultat.lastID, 20, 10]
             
             // INSERT INTO echange_brique(id_brique, quantite)
         );
-        return resultat2.lastID;
-    }
+        return resultat.lastID;
+    // }
 }
 
 //Valider
