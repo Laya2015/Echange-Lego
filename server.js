@@ -40,6 +40,7 @@ app.get('/briques', async (request,response) => {
     response.render('creer_echange',{
         titre : 'Creer Echange',
         styles : ['/css/creerEchange.css'],
+        scripts : ['/js/briques.js'],
         allBrique : allBrique
     })
 })
@@ -66,8 +67,9 @@ app.get('/api/briques',async (request,response)=>{
     response.status(200).json(briques);
 })
 app.post('/api/echange', async (request, response) => {
-    const index = await postEchange(request.body.nom_echange);
+    const index = await postEchange(request.body.nom_echange, request.body.echange_brique.brique, request.body.quantite);
     response.status(201).json({id_echange : index})
+    
 })
 
 app.get('/api/echangeBriques',async (request,response)=>{

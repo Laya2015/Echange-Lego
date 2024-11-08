@@ -24,7 +24,7 @@
                     <p>{{this.brique_Couleur}}</p>
                 </div>
             </div>
-            <input type="number" value="0">
+            <input type="number" value="0" id="quantiteBrique" data-id="{{this.id_brique}}">
         </div>
     </div>
     {{/each}}
@@ -33,3 +33,4 @@
     <input type="text">
     <button type="submit" class="btnCreerEchange" >Creer Echange</button>
 </section>
+<div id="messageErreur"></div>
