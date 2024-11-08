@@ -5,16 +5,18 @@ import {connexion} from '../db/connexion.js';
  * 
  * @returns les echanges proposé par l'utilisateur
  */
+//Valider
 export async function getAllEchanges() {
     const echanges = await connexion.all(
         //`SELECT * FROM echange`
-        `SELECT echange.nom_echange, utilisateur.nom, utilisateur.prenom
+        `SELECT echange.nom_echange, utilisateur.nom, utilisateur.prenom, utilisateur.id_utilisateur
         FROM echange
         JOIN utilisateur ON echange.id_utilisateur = utilisateur.id_utilisateur;`
         )
     return echanges;
 }
 
+//non valider
 export async function getUserEchanges() {
     const userEchanges = await connexion.all(
         //`SELECT * FROM echange`
@@ -25,7 +27,7 @@ export async function getUserEchanges() {
     return userEchanges;
 }
 
-
+//Valider
 export async function getBrique() {
     const briques = await connexion.all(
         // `SELECT *
@@ -37,6 +39,7 @@ export async function getBrique() {
     return briques;
 }
 
+//Valider
 export async function postEchange(nom_echange, briques){
     const resultat = await connexion.run(
         `INSERT INTO echange (nom_echange, id_utilisateur)
@@ -58,6 +61,7 @@ export async function postEchange(nom_echange, briques){
     }
 }
 
+//Valider
 export async function getEchangeBrique() {
     const echangebriques = await connexion.all(
         `SELECT * 
@@ -67,6 +71,7 @@ export async function getEchangeBrique() {
     return echangebriques;
 }
 
+//non valider
 export async function deleteEchange(echangeId) {
     await connexion.run(`
         DELETE FROM echange 
@@ -75,4 +80,32 @@ export async function deleteEchange(echangeId) {
     )
 }
 
+export async function getDetailsEchanges(id_echange) {
+    const allDetailsEchange = await connexion.all(
+        //`SELECT * FROM echange`
+        `SELECT echange.nom_echange as nom_echange, utilisateur.nom, utilisateur.prenom , brique.nom as nom_brique, brique.image, brique.valeur, couleur.nom as couleur_brique , echange_brique.quantite
+        FROM echange
+        JOIN utilisateur ON echange.id_utilisateur = utilisateur.id_utilisateur
+        JOIN echange_brique ON echange_brique.id_echange = echange.id_echange
+        JOIN brique ON echange_brique.id_brique = brique.id_brique
+        JOIN couleur ON couleur.id_couleur = brique.id_couleur
+        WHERE echange.id_echange = ${id_echange} AND echange_brique.id_echange = ${id_echange} ;
+        `
+    )
+    // return detailsEchange;
+        
+    // const detailsEchangeBriques = await connexion.all(
+    //     `SELECT brique.nom as nom_brique, brique.image, brique.valeur, couleur.nom , echange_brique.quantite
+    //     FROM echange_brique
+    //     JOIN brique ON echange_brique.id_brique = brique.id_brique
+    //     JOIN couleur ON couleur.id_couleur = brique.id_couleur
+    //     WHERE echange_brique.id_echange = ${id_echange}
+    //     ;`
+    // )
 
+    // return detailsEchangeBriques;
+    return allDetailsEchange;
+        
+        
+   
+}

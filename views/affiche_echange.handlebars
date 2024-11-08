@@ -1,8 +1,26 @@
-<ul id="todo-list">
-    {{#each allEchanges}}
-        <li>
-            <p>{{this}} </p>
-        </li>
+
+<h2> {{this.var.nom_echange}}</h2>
+<h3> {{this.var.nom}}  {{this.var.prenom}}</h3>
+
+<table>
+    <tr>
+        <th>Image brique</th>
+        <th>Nom brique </th>
+        <th>Couleur Brique </th>
+        <th>Quantite</th>
+        <th>Valeur</th>
+    </tr>
+    {{#each allDetailsEchange}}
+        <tr id="id_ligne">
+            <td><img src="/assets/{{this.image}}" alt="brique"></td>
+            <td>{{this.nom_brique}} </td>
+            <td>{{this.couleur_brique}}</td>
+            <td id = "id_quantite">{{this.quantite}}</td>
+            <td id = "id_valeur">{{this.valeur}}</td>
+            <td id = "id_resultat"></td>
+        </tr>
     {{/each}}
-</ul>
+</table>
+<div id="totalValeurEchange">Valeur globale approximative : </div>
+
 
