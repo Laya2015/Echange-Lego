@@ -3,6 +3,7 @@ body{
     height: 100vh;
     margin: 0;
 }
+
 .Nos-Espaces {
     width: 90%;
     margin: 0 auto;
@@ -69,5 +70,5 @@ body{
   }
   .creation button {
     width: 20%;
-    font-size: 25px;
+    font-size: 20px;
   }
