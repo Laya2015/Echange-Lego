@@ -15,14 +15,14 @@
         <th></th>
     </tr>
     {{#each allEchanges}}
-        <tr>
+        <tr id="id_ligne">
             <td>{{this.nom_echange}}</td>
             <td>{{this.nom}} </td>
             <td>{{this.prenom}} </td>
-            <td><input type="button" value="voir echange" data-id="{{this.id_utilisateur}}"></td>
+            <td  id="detailsEchange" data-id = "{{this.id_echange}}" > <a href="http://localhost:5000/detailsEchange" id="lienVoirEchange">Voir Echange</a></td>
         </tr>
 
     {{/each}}
 </table>
 </div>
-<div class="btnDetailsEchange"><a href="http://localhost:5000/briques" class="detailsEchange">Voir Echange</a></div>
+<div class="btnDetailsEchange"><a href="http://localhost:5000/briques" class="detailsEchange1">Creer Echange</a></div>

@@ -50,6 +50,7 @@ app.get('/echanges', async (request,response) => {
     response.render('echanges',{
         titre : 'Echanges',
         styles : ['/css/echanges.css'],
+        scripts : ['/js/echanges.js'],
         allEchanges : allEchanges
     })
 })
@@ -80,7 +81,7 @@ app.delete('/api/supprimeEchange',async (request,response)=>{
 })
 //route handlebars getDetailsEchanges
 app.get("/DetailsEchange", async (request,response) =>{
-    const allDetailsEchange = await getDetailsEchanges(1);
+    const allDetailsEchange = await getDetailsEchanges(request.query.id_echange);
     response.render('affiche_echange',{
         titre : 'Details',
         styles : ['/css/afficheEchange.css'],

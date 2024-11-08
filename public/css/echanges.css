@@ -10,7 +10,7 @@ table {
     width: 100%;
   }
 th {
-    text-align: center;
+    text-align: left;
     padding: 8px;   
     font-size: large;
 }
@@ -22,15 +22,25 @@ td {
 tr:nth-child(even) {
     background-color: #D6EEEE;
   }
-.detailsEchange {
+#lienVoirEchange {
     padding: 0px 10px;
     color: #333;
     text-decoration: none;
 }
+.detailsEchange1 {
+  padding: 0px 10px;
+  color: #333;
+  text-decoration: none;
+}
 .btnDetailsEchange {
-    width: 90%;
+    width: 60%; 
     margin: 30px auto;
     display: flex;
     justify-content: center;
-    background-color: aqua;
+} 
+.btnDetailsEchange a {
+  font-size: 20px;
+  /* margin: 20px; */
+  padding: 20px;
+  background-color: aqua;
 }

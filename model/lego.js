@@ -9,7 +9,7 @@ import {connexion} from '../db/connexion.js';
 export async function getAllEchanges() {
     const echanges = await connexion.all(
         //`SELECT * FROM echange`
-        `SELECT echange.nom_echange, utilisateur.nom, utilisateur.prenom, utilisateur.id_utilisateur
+        `SELECT echange.nom_echange, utilisateur.nom, utilisateur.prenom, utilisateur.id_utilisateur, echange.id_echange
         FROM echange
         JOIN utilisateur ON echange.id_utilisateur = utilisateur.id_utilisateur;`
         )
@@ -92,18 +92,7 @@ export async function getDetailsEchanges(id_echange) {
         WHERE echange.id_echange = ${id_echange} AND echange_brique.id_echange = ${id_echange} ;
         `
     )
-    // return detailsEchange;
-        
-    // const detailsEchangeBriques = await connexion.all(
-    //     `SELECT brique.nom as nom_brique, brique.image, brique.valeur, couleur.nom , echange_brique.quantite
-    //     FROM echange_brique
-    //     JOIN brique ON echange_brique.id_brique = brique.id_brique
-    //     JOIN couleur ON couleur.id_couleur = brique.id_couleur
-    //     WHERE echange_brique.id_echange = ${id_echange}
-    //     ;`
-    // )
 
-    // return detailsEchangeBriques;
     return allDetailsEchange;
         
         
