@@ -6,7 +6,7 @@ import helmet from 'helmet';
 import cors from 'cors';
 import compression from 'compression';
 import {engine} from 'express-handlebars';
-import { deleteEchange, getAllEchanges, getBrique, getEchangeBrique, getUserEchanges, postEchange } from './model/lego.js';
+import { deleteEchange, getAllEchanges, getBrique, getEchangeBrique, getUserEchanges, postEchange , getDetailsEchanges } from './model/lego.js';
 
 
 // Créer le serveur
@@ -78,8 +78,25 @@ app.delete('/api/supprimeEchange',async (request,response)=>{
     const supprime_change = await deleteEchange();
     response.status(200).json(supprime_change);
 })
+//route handlebars getDetailsEchanges
+app.get("/DetailsEchange", async (request,response) =>{
+    const allDetailsEchange = await getDetailsEchanges(1);
+    response.render('affiche_echange',{
+        titre : 'Details',
+        styles : ['/css/afficheEchange.css'],
+        scripts : ['/js/affiche_echange.js'],
+        allDetailsEchange : allDetailsEchange,
+        var : allDetailsEchange[1]
+    })
+})
+
+//Route getDetailsEchanges
+app.get("/api/DetailsEchanges", async (request,response) => {
+    const allDetailsEchange = await getDetailsEchanges(request.query.id_echange);
+    response.status(200).json(allDetailsEchange);
+})
 
 // Démarrer le serveur
 console.log('Serveur démarré:');
-console.log('http://localhost:' + process.env.PORT);
+console.log('http://localhost:' + process.env.PORT + "/briques");
 app.listen(process.env.PORT);

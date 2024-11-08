@@ -100,10 +100,10 @@ async function createDatabase(connexion) {
         VALUES ('test@test.com', 'Christiansen', 'Ole Kirk', 'Test1234', 1);
         
         INSERT INTO echange (id_utilisateur, nom_echange) 
-        VALUES (1, 'Premier echange');
+        VALUES (1, 'Premier echange'), (1, 'deuxieme echange');
         
         INSERT INTO echange_brique (id_echange, id_brique, quantite)
-        VALUES (1, 2, 10);`
+        VALUES (1, 2, 10), (1, 1, 5);`
     );
 
     // return connexion;

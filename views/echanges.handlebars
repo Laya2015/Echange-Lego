@@ -9,9 +9,9 @@
 <div>
 <table>
     <tr>
-        <th>Nom</th>
-        <th>Utilisateur nom</th>
-        <th>utilisateur prenom</th>
+        <th>Nom Echange</th>
+        <th>Nom Utilisateur </th>
+        <th>Prenom Utilisateur </th>
         <th></th>
     </tr>
     {{#each allEchanges}}
@@ -19,10 +19,10 @@
             <td>{{this.nom_echange}}</td>
             <td>{{this.nom}} </td>
             <td>{{this.prenom}} </td>
-            <td><input type="button" value="voir echange"></td>
+            <td><input type="button" value="voir echange" data-id="{{this.id_utilisateur}}"></td>
         </tr>
 
     {{/each}}
 </table>
 </div>
-<div><a href="http://localhost:5000/briques">ggygyguhuhuhuuj</a></div>
+<div class="btnDetailsEchange"><a href="http://localhost:5000/briques" class="detailsEchange">Voir Echange</a></div>
