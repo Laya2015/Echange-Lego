@@ -19,12 +19,7 @@ function addParamUrl(monHref,idEchange){
     return monHref+=`?id_echange=${idEchange}`
 }
 
-async function supprimerEchange(event) { 
-    // Préparer les données
 
-
-}
-// document.addEventListener('DOMContentLoaded',() => {
 const buttonDelete = document.querySelectorAll("#delete");
 
     buttonDelete.forEach(boutton =>{
