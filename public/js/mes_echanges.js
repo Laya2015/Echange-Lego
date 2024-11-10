@@ -30,23 +30,19 @@ const buttonDelete = document.querySelectorAll("#delete");
             const data = {
                 id_echange: idEchange
             }
-            // Envoyer la requete HTTP
-            // try
-            // { 
+
             const response = await fetch('/api/userEchanges', {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             });
             if(response.ok){
-                // lienEchange();
-                alert('Ligne supprimer');
+                const tdToDelete = boutton.closest('tr');
+                tdToDelete.remove();
+                // alert('Ligne supprimer');
             }else {
                 alert('echec de la suppression')
             }
-            // } catch (error){
-            //     alert(error);
-            // };
             
         });
     })
