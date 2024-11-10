@@ -20,7 +20,7 @@ export async function getAllEchanges() {
 export async function getUserEchanges() {
     const userEchanges = await connexion.all(
         //`SELECT * FROM echange`
-        `SELECT echange.nom_echange, utilisateur.nom, utilisateur.prenom
+        `SELECT echange.nom_echange, utilisateur.nom, utilisateur.prenom, echange.id_echange
         FROM echange
         JOIN utilisateur ON echange.id_utilisateur = utilisateur.id_utilisateur;`
         )
@@ -72,11 +72,11 @@ export async function getEchangeBrique() {
 }
 
 //non valider
-export async function deleteEchange(echangeId) {
-    await connexion.run(`
+export async function deleteEchange(id_echange) {
+    const deleteechange = await connexion.run(`
         DELETE FROM echange 
-        WHERE id_echange = ? AND id_utilisateur = ?`,
-        [echangeId, 1]
+        WHERE id_echange = ?`,
+        [id_echange]
     )
 }
 

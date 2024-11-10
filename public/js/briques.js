@@ -21,6 +21,9 @@ document.querySelector('.btnCreerEchange').addEventListener('click', (event) => 
     if(val == 0) messageErreur.innerText = "veuillez saisir le nombre de briques.";
     else {
         messageErreur.innerText = "";
+        // let table2D  =[][] ;
+        // window.location.href = ("http://localhost:5000/echanges")
+        
     }
     
     
