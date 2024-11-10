@@ -87,7 +87,7 @@ export async function deleteEchange(id_echange) {
 }
 
 export async function getDetailsEchanges(id_echange) {
-  
+
 
     const allDetailsEchange = await connexion.all(
         //`SELECT * FROM echange`
