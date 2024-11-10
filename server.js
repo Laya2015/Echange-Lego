@@ -33,6 +33,15 @@ app.get('/allEchanges', async (request, response) => {
         allEchanges : allEchanges
     })
 });
+app.get('/userEchanges', async (request, response) => {
+    const userEchanges = await getUserEchanges();
+    response.render('mes_echanges', {
+        titre: 'Mes Echanges',
+        styles: ['/css/mes_echanges.css'],
+        scripts: ['/js/mes_echanges.js'],
+        userEchanges : userEchanges
+    })
+});
 
 //creer echange
 app.get('/briques', async (request,response) => {
@@ -60,6 +69,10 @@ app.get('/api/echanges', async (request,response) => {
     const  echanges = await getAllEchanges();
     response.status(200).json(echanges);
 })
+app.get('/api/userEchanges', async (request,response) => {
+    const  mesEchanges = await getUserEchanges();
+    response.status(200).json(mesEchanges);
+})
 
 //ROUTE brique
 app.get('/api/briques',async (request,response)=>{
@@ -77,8 +90,16 @@ app.get('/api/echangeBriques',async (request,response)=>{
     response.status(200).json(echangeBriques);
 })
 
-app.delete('/api/supprimeEchange',async (request,response)=>{
-    const supprime_change = await deleteEchange();
+app.delete('/userEchanges',async (request,response) => {
+    const supprime_change = await deleteEchange(request.query.id_echange);
+    response.render('mes_echanges',{
+        titre: 'Mes Echanges',
+        styles: ['/css/mes_echanges.css'],
+        scripts: ['/js/mes_echanges.js']
+    });
+})
+app.delete('/api/userEchanges',async (request,response)=>{
+    const supprime_change = await deleteEchange(request.query.id_echange);
     response.status(200).json(supprime_change);
 })
 //route handlebars getDetailsEchanges
@@ -99,6 +120,10 @@ app.get("/api/DetailsEchanges", async (request,response) => {
     response.status(200).json(allDetailsEchange);
 })
 
+// app.delete('/api/deleteEchanges/:id', async(request, response)=> {
+//     const echangeId = await deleteEchange(request.query.id);
+//     response.status(201).json(echangeId);
+// })
 // Démarrer le serveur
 console.log('Serveur démarré:');
 console.log('http://localhost:' + process.env.PORT + "/briques");
