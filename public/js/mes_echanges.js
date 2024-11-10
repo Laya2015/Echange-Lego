@@ -24,8 +24,8 @@ const buttonDelete = document.querySelectorAll("#delete");
 
     buttonDelete.forEach(boutton =>{
         // const id_echange = boutton.getAttribute('data_id');
-        boutton.addEventListener('click', async (event) => {
-            event.preventDefault();
+        boutton.addEventListener('click', async () => {
+            // event.preventDefault();
             const idEchange = boutton.getAttribute("data-id");
             const data = {
                 id_echange: idEchange
