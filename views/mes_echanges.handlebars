@@ -1,23 +1,24 @@
 <h2>Mes Echanges</h2>
 
 <div>
-<table>
-    <tr>
-        <th>Nom Echange</th>
-        <th>Nom Utilisateur </th>
-        <th>Prenom Utilisateur </th>
-        <th></th>
-    </tr>
-    {{#each userEchanges}}
+    <table>
+        <tr>
+            <th>Nom Echange</th>
+            <th>Nom Utilisateur </th>
+            <th>Prenom Utilisateur </th>
+            <th></th>
+        </tr>
+        {{#each userEchanges}}
         <tr id="id_ligne">
             <td>{{this.nom_echange}}</td>
             <td>{{this.nom}} </td>
             <td>{{this.prenom}} </td>
-            <td  id="detailsEchange" data-id = "{{this.id_echange}}" > <a href="http://localhost:5000/detailsEchange" id="lienVoirEchange">Voir Echange</a></td>
+            <td id="detailsEchange" data-id="{{this.id_echange}}"> <a href="http://localhost:5000/detailsEchange"
+                    id="lienVoirEchange">Voir Echange</a></td>
             <td><button type="submit" id="delete" data-id="{{this.id_echange}}">Supprimer</button></td>
         </tr>
 
-    {{/each}}
-</table>
+        {{/each}}
+    </table>
 </div>
 <div class="btnDetailsEchange"><a href="http://localhost:5000/briques" class="detailsEchange1">Creer Echange</a></div>

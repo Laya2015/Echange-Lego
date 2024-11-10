@@ -1,4 +1,4 @@
-import {connexion} from '../db/connexion.js';
+import { connexion } from '../db/connexion.js';
 
 
 /**
@@ -12,7 +12,7 @@ export async function getAllEchanges() {
         `SELECT echange.nom_echange, utilisateur.nom, utilisateur.prenom, utilisateur.id_utilisateur, echange.id_echange
         FROM echange
         JOIN utilisateur ON echange.id_utilisateur = utilisateur.id_utilisateur;`
-        )
+    )
     return echanges;
 }
 
@@ -23,7 +23,7 @@ export async function getUserEchanges() {
         `SELECT echange.nom_echange, utilisateur.nom, utilisateur.prenom, echange.id_echange
         FROM echange
         JOIN utilisateur ON echange.id_utilisateur = utilisateur.id_utilisateur;`
-        )
+    )
     return userEchanges;
 }
 
@@ -40,26 +40,27 @@ export async function getBrique() {
 }
 
 //Valider
-export async function postEchange(nom_echange){
+export async function postEchange(nom_echange, id_briques, quantites) {
     const resultat = await connexion.run(
         `INSERT INTO echange (nom_echange, id_utilisateur)
         VALUES (?, ?);`,
         [nom_echange, 1]
         // INSERT INTO echange_brique(id_brique, quantite)
     );
-    
 
-    // for(const brique of briques) {
+
+    for (let i = 0; i < id_briques.length; i++) {
         const resultat2 = await connexion.run(
             `INSERT INTO echange_brique (id_echange, id_brique, quantite)
             VALUES (?, ?, ?)`,
-            [resultat.lastID, 20, 10]
-            
+            [resultat.lastID, id_briques[i], quantites[i]]
+
             // INSERT INTO echange_brique(id_brique, quantite)
         );
-        return resultat.lastID;
-    // }
+    }
+    return resultat.lastID;
 }
+
 
 //Valider
 export async function getEchangeBrique() {
@@ -73,14 +74,21 @@ export async function getEchangeBrique() {
 
 //non valider
 export async function deleteEchange(id_echange) {
-    const deleteechange = await connexion.run(`
+    const deleteEchange = await connexion.run(`
         DELETE FROM echange 
+        WHERE id_echange = ?`,
+        [id_echange]
+    )
+    const deleteEchangeBrique = await connexion.run(`
+        DELETE FROM echange_brique 
         WHERE id_echange = ?`,
         [id_echange]
     )
 }
 
 export async function getDetailsEchanges(id_echange) {
+  
+
     const allDetailsEchange = await connexion.all(
         //`SELECT * FROM echange`
         `SELECT echange.nom_echange as nom_echange, utilisateur.nom, utilisateur.prenom , brique.nom as nom_brique, brique.image, brique.valeur, couleur.nom as couleur_brique , echange_brique.quantite
@@ -94,7 +102,7 @@ export async function getDetailsEchanges(id_echange) {
     )
 
     return allDetailsEchange;
-        
-        
-   
+
+
+
 }
