@@ -7,7 +7,6 @@ let id_briques = [];
 let quantites = [];
 function caseVide() {
     let total = 0;
-
     quantiteBrique.forEach(element => {
         if (element.value == '0') total = total + 1
         else {
@@ -17,10 +16,10 @@ function caseVide() {
     });
     console.log(id_briques);
     console.log(quantites);
-
     if (total == 24) return 0;
     else return 1;
 }
+
 function viderquantiteBrique() {
     quantiteBrique.forEach(element => {
         element.value = "0";
@@ -46,8 +45,7 @@ document.querySelector('.btnCreerEchange').addEventListener('click', async () =>
         })
         if (response.ok) {
             viderquantiteBrique();
+            window.location.href("http://localhost:5000/userEchanges");
         }
     }
-
-
 })
